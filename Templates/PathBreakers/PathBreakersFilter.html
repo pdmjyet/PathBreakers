@@ -1,0 +1,42 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script>
+function getList(){
+    yogListElement = document.getElementById("yogList");
+    var yog = yogListElement.selectedOptions[0].innerText;
+
+    professionListElement = document.getElementById("professionList");
+    var profession = professionListElement.selectedOptions[0].innerText;
+
+    var args = {type:"GET", yog:yog, dataOnly:1};
+
+    $.ajax(args).done(function(data){
+        console.log(data);
+    });
+}
+</script>
+
+<form>
+
+<div class="flex-container">
+    <div>
+        <select id="yogList" name="yog">
+            {% for yogObj in yog_list %}
+                <option value="{{yogObj.yog}}">{{ yogObj.yog }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <select id="professionList" name="profession">
+            {% for profession in profession_list %}
+                <option value="{{profession.name}}">{{ profession.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <input type="submit" value = "search" onclick="getList()"/>
+    </div>
+</div>
+
+</form>

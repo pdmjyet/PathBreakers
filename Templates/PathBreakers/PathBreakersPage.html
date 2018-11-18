@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PathBreakers</title>
+    <link rel="stylesheet" href="{% static 'PathBreakers/css/PathBreakers.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'PathBreakers/css/PathBreakersFilter.css' %}" type="text/css" />
+</head>
+<body>
+    <div class="row1">
+        <center><h2> NITW alumni who are pursuing a typical professions successfully</h2></center>
+        {%include "PathBreakers/PathBreakersFilter.html" with profession_list=profession_list %}
+    </div>
+    <div class="row2">
+        {%include "PathBreakers/PathBreakersList.html" with path_breakers_list=path_breakers_list %}
+    </div>
+
+</body>
+</html>
