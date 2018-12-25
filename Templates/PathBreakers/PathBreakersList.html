@@ -1,74 +1,18 @@
-<script>
-function detailInfo(element, name, blurb, link, yog, profession){
-    element.style.opacity = 0.7;
-    row1 = element.children[1];
-    if(row1.hasChildNodes()){
-        return;
-    }
-    var row11 = document.createElement("div");
-    row11.setAttribute("class", "image-row11");
-
-    var nameNode = document.createElement("div");
-    nameNode.innerText = name;
-
-    var knowMoreNode = document.createElement("div");
-    knowMoreNode.innerText = link;
-
-
-    row11.appendChild(nameNode);
-    row11.appendChild(knowMoreNode);
-
-    var row12 = document.createElement("div");
-    row12.setAttribute("class", "image-row12");
-
-    var blurbNode = document.createElement("div");
-    blurbNode.innerText = blurb;
-
-    row12.appendChild(blurbNode);
-
-    row1.appendChild(row11);
-    row1.appendChild(row12);
-}
-
-function summary(element, yog, profession){
-    element.style.opacity = 1;
-    row1 = element.children[1];
-    row1Clone = row1.cloneNode(false);
-    element.replaceChild(row1Clone, row1);
-
-}
-
-var windowURL = "";
-function getURL(){
-    if(windowURL == ""){
-        windowURL = window.location.protocol + "//" + window.location.host + "/";
-    }
-    return windowURL;
-}
-
-</script>
-
 {% load static %}
 {% if path_breakers_list %}
-    <div class = "flex-container">
-        {% for pathbreaker in path_breakers_list %}
 
-        <div>
-            <div class = "image-container" onmouseleave="summary(this, '{{ pathbreaker.yog }}', '{{ pathbreaker.Profession.name }}')" onmouseover="detailInfo(this, '{{ pathbreaker.name }}', '{{ pathbreaker.blurb }}', '{{ pathbreaker.link }}', '{{ pathbreaker.yog }}', 'profession')">
-                  {% load static %}
-                <img src="../static/PathBreakers/Default.png" onload="this.onload=null; this.src=getURL()+'{{ pathbreaker.profilePic }}'" alt = "../static/PathBreakers/Default.png" style="width:200px;height:250px;" />
-
-                <div class = "image-row1"></div>
-
-            </div>
-            <div class = "image-row2" style="background-color:lightblue" opacity = 0.5>
-                <div class = "image-row21"> {{ pathbreaker.name }} </div>
-                <div class = "image-row22"> {{ pathbreaker.yog }} </div>
-            </div>
+    {% for pathbreaker in path_breakers_list %}
+        <div class="result-div">
+            <img id="w-node-540e4708a6fc-f885d616" src="{{ pathbreaker.profilePic }}" width="280"  sizes="280px" alt="" class="image result-image">
         </div>
-        {% endfor %}
-    </div>
 
+    {% endfor %}
+<script>
+    updateCount();
+</script>
 {% else %}
+<script>
+    resetCount();
+</script>
     <p>No path breakers available.</p>
 {% endif %}

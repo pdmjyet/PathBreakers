@@ -14,6 +14,7 @@ def YOGValidator(yog):
 
 
 class PathBreaker(PersonalInfo):
+    """
     yog = models.CharField(max_length=9,
                            validators = [
                                 RegexValidator(
@@ -23,5 +24,6 @@ class PathBreaker(PersonalInfo):
                                     ),
                                 YOGValidator
                             ])
+    """
+    yog = models.IntegerField()
     Profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
-

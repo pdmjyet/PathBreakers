@@ -1,42 +1,136 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script>
-function getList(){
+function updateCount(){
+        resultsElem = document.getElementById("results");
+
+        resultsCountElem = document.getElementById("results-count");
+        resultsCountElem.innerText = "Showing " + document.getElementsByClassName("result-div").length + " profiles";
+}
+
+function resetCount(){
+        resultsCountElem = document.getElementById("results-count");
+        resultsCountElem.innerText = "";
+}
+
+function getProfessions(){
     yogListElement = document.getElementById("yogList");
     var yog = yogListElement.selectedOptions[0].innerText;
 
-    professionListElement = document.getElementById("professionList");
-    var profession = professionListElement.selectedOptions[0].innerText;
-
-    var args = {type:"GET", yog:yog, dataOnly:1};
+    var args = {url: window.location.origin + window.location.pathname + "/professions", type:"GET", data : {
+                                        yog:yog,
+                                    }};
 
     $.ajax(args).done(function(data){
         console.log(data);
+        var professionList = data["response"];
+
+
+        ProfessionsListElem = document.getElementById("professionList");
+        newProfessionsListElem = ProfessionsListElem.cloneNode(false);
+        for(var i = 0 ; i<professionList.length; i++){
+
+            var option = document.createElement("option");
+            option.text = professionList[i]["Profession__name"];
+            option.value = professionList[i]["Profession__name"];
+            newProfessionsListElem.add(option);
+        }
+        ProfessionsListElem.parentNode.replaceChild(newProfessionsListElem, ProfessionsListElem);
+
     });
+}
+
+function getList(){
+    yogListElement = document.getElementById("yogList");
+    var yog = yogListElement.selectedOptions[0].value;
+
+    professionListElement = document.getElementById("professionList");
+    var profession = professionListElement.selectedOptions[0].value;
+
+    var data = {};
+    if(yog != ""){
+        data["yog"] = yog;
+    }
+    if(profession != ""){
+        data["profession"] = profession;
+    }
+
+    var args = {url: window.location.origin + window.location.pathname, type:"GET", data:data};
+    var page = -1;
+    $.ajax(args).done(function(data){
+        console.log(data);
+        /*window.location.href = this.url;*/
+
+        resultsElem = document.getElementById("results");
+        responseHtml = document.createRange().createContextualFragment(data.trim());
+        respResultsElem = responseHtml.getElementById("results");
+
+        respProfessionsElem = responseHtml.getElementById("professionList");
+        professionListElement.parentNode.replaceChild(respProfessionsElem, professionListElement);
+        if(profession != ""){
+            respProfessionsElem.value= profession;
+        }
+
+        updateCount();
+
+        if(page != -1){
+            resultsElem.appendChild(dataDiv);
+            append(respResultsElem, resultsElem);
+        }
+        else{
+            //resultsElemClone = resultsElem.cloneNode(false);
+            //resultsElemClone.appendChild(dataDiv);getProfessions
+            resultsElem.parentNode.replaceChild(respResultsElem, resultsElem);
+            window.history.pushState("page","", this.url);
+        }
+    });
+}
+
+function append(source, destination){
+    while(source.hasChildNodes){
+        destination.appendChild(source.childNodes[0])
+    }
 }
 </script>
 
-<form>
+<div class="w-form">
+  <form id="email-form" name="email-form" data-name="Email Form" class="form">
+    <div class="combo-div">
+      <h4>Year of Graduation</h4>
+        <select id="yogList" name="yog" data-name="Year of graduation" class="w-select" onchange="getList()">
 
-<div class="flex-container">
-    <div>
-        <select id="yogList" name="yog">
-            {% for yogObj in yog_list %}
-                <option value="{{yogObj.yog}}">{{ yogObj.yog }}</option>
+            <option value="">All</option>
+            {% for yog in yog_list %}
+                <option value="{{yog}}">{{ yog }}s</option>
             {% endfor %}
         </select>
+      <h5><em class="italic-text-2">Year in which the alumnus has graduated</em></h5>
     </div>
-
-    <div>
-        <select id="professionList" name="profession">
+    <div class="combo-div">
+      <h4> Profession</h4>
+        <select id="professionList" name="profession" data-name="Profession" class="w-select" onchange="getList()">
+            <option value="">All</option>
             {% for profession in profession_list %}
-                <option value="{{profession.name}}">{{ profession.name }}</option>
+                <option value="{{profession.Profession__name}}">{{ profession.Profession__name }}</option>
             {% endfor %}
         </select>
+      <h5><em class="italic-text-2">Eg: Entrepreneur, Civil Servant, politician</em></h5>
     </div>
-
-    <div>
-        <input type="submit" value = "search" onclick="getList()"/>
+    <div class="combo-div">
+      <h4>Tags</h4>
+      <select id="field-2" name="field-2" data-name="Field 2" class="w-select">
+          <option value="">All</option>
+          <option value="First">First Choice</option>
+          <option value="Second">Second Choice</option>
+          <option value="Third">Third Choice</option>
+      </select>
+      <h5><em class="italic-text-2">Domain within a profession</em></h5>
     </div>
+  </form>
+  <div class="w-form-done" hidden = "true">
+    <div>Thank you! Your submission has been received!</div>
+  </div>
+  <div class="w-form-fail" hidden = "true">
+    <div>Oops! Something went wrong while submitting the form.</div>
+  </div>
 </div>
-
-</form>
+<h3 id = "results-count" class="heading-4"></h3>

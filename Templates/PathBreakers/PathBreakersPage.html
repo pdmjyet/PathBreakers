@@ -1,20 +1,42 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<!--  This site was created in Webflow. http://www.webflow.com  -->
+<!--  Last Published: Mon Nov 19 2018 07:17:54 GMT+0000 (UTC)  -->
+<html data-wf-page="5bf13f9b53927627f885d616" data-wf-site="5bf13f9b539276ad4785d615">
+{% load static %}
 <head>
-    <meta charset="UTF-8">
-    <title>PathBreakers</title>
-    <link rel="stylesheet" href="{% static 'PathBreakers/css/PathBreakers.css' %}" type="text/css" />
-    <link rel="stylesheet" href="{% static 'PathBreakers/css/PathBreakersFilter.css' %}" type="text/css" />
+  <meta charset="utf-8">
+  <title>PathBreakers</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Webflow" name="generator">
+  <link href="{% static 'PathBreakers/css/normalize.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'PathBreakers/css/webflow.css' %}"  rel="stylesheet" type="text/css">
+  <link href="{% static 'PathBreakers/css/path-breakers.webflow.css' %}" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Bitter:400,700,400italic"]  }});</script>
+  <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
+  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="{% static 'PathBreakers/js/webflow.js' %}" type="text/javascript"></script>
+
+  <link href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon">
 </head>
-<body>
-    <div class="row1">
-        <center><h2> NITW alumni who are pursuing a typical professions successfully</h2></center>
+
+<body class="body-2">
+    <div class="section">
+        <div class="container w-container">
+          <h1 class="heading-3">NITW PATH BREAKERS<br>‍</h1>
+          <h3 class="heading-2">Listing of alumni from my alma mater - NIT Warangal - who are pursuing <span><em class="italic-text">atypical</em></span> professions successfully. This is NOT an exhaustive list, it only includes folks whom I met or would like to meet</h3>
+        </div>
+    </div>
+    <div>
         {%include "PathBreakers/PathBreakersFilter.html" with profession_list=profession_list %}
     </div>
-    <div class="row2">
+
+    <div id="results" class="results-container w-container" onload="updateCount()">
         {%include "PathBreakers/PathBreakersList.html" with path_breakers_list=path_breakers_list %}
     </div>
+
 
 </body>
 </html>
