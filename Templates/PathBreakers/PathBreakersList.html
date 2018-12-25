@@ -1,0 +1,18 @@
+{% load static %}
+{% if path_breakers_list %}
+
+    {% for pathbreaker in path_breakers_list %}
+        <div class="result-div">
+            <img id="w-node-540e4708a6fc-f885d616" src="{{ pathbreaker.profilePic }}" width="280"  sizes="280px" alt="" class="image result-image">
+        </div>
+
+    {% endfor %}
+<script>
+    updateCount();
+</script>
+{% else %}
+<script>
+    resetCount();
+</script>
+    <p>No path breakers available.</p>
+{% endif %}
