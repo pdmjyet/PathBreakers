@@ -2,6 +2,6 @@ PathBreakers/migrations/__pycache__/
 PathBreakers/migrations/*initial.py
 PathBreakers/migrations/*.py
 
-__pycache__/
+**/__pycache__/
 
 *.pyc
