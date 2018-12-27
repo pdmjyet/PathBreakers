@@ -2,7 +2,7 @@ from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
 from django.db import models
 from .PersonalInfo import PersonalInfo
-from .Profession import  Profession
+from .Profession import  ProfessionTag
 
 
 def YOGValidator(yog):
@@ -26,4 +26,6 @@ class PathBreaker(PersonalInfo):
                             ])
     """
     yog = models.IntegerField()
-    Profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
+    professionTag = models.ManyToManyField(ProfessionTag)
+    #Profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
+
