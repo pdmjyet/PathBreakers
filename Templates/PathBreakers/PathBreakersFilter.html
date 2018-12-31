@@ -30,13 +30,27 @@ function getProfessions(){
         for(var i = 0 ; i<professionList.length; i++){
 
             var option = document.createElement("option");
-            option.text = professionList[i]["Profession__name"];
-            option.value = professionList[i]["Profession__name"];
+            option.text = professionList[i]["name"];
+            option.value = professionList[i]["name"];
             newProfessionsListElem.add(option);
         }
         ProfessionsListElem.parentNode.replaceChild(newProfessionsListElem, ProfessionsListElem);
 
     });
+}
+
+function resetProfessionTag()
+{
+    document.getElementById("professionList").selectedIndex = 0;
+    document.getElementById("tagList").selectedIndex = 0;
+    getList();
+}
+
+
+function resetTag()
+{
+    document.getElementById("tagList").selectedIndex = 0;
+    getList();
 }
 
 function getList(){
@@ -46,12 +60,19 @@ function getList(){
     professionListElement = document.getElementById("professionList");
     var profession = professionListElement.selectedOptions[0].value;
 
+    tagListElement = document.getElementById("tagList");
+    var tag = tagListElement.selectedOptions[0].value;
+
+
     var data = {};
     if(yog != ""){
         data["yog"] = yog;
     }
     if(profession != ""){
         data["profession"] = profession;
+    }
+    if(tag != ""){
+        data["tag"] = tag;
     }
 
     var args = {url: window.location.origin + window.location.pathname, type:"GET", data:data};
@@ -68,6 +89,12 @@ function getList(){
         professionListElement.parentNode.replaceChild(respProfessionsElem, professionListElement);
         if(profession != ""){
             respProfessionsElem.value= profession;
+        }
+
+        respTagsElem = responseHtml.getElementById("tagList");
+        tagListElement.parentNode.replaceChild(respTagsElem, tagListElement);
+        if(tag != ""){
+            respTagsElem.value = tag;
         }
 
         updateCount();
@@ -96,9 +123,9 @@ function append(source, destination){
   <form id="email-form" name="email-form" data-name="Email Form" class="form">
     <div class="combo-div">
       <h4>Year of Graduation</h4>
-        <select id="yogList" name="yog" data-name="Year of graduation" class="w-select" onchange="getList()">
+        <select id="yogList" name="yog" data-name="Year of graduation" class="w-select" onchange="resetProfessionTag()">
 
-            <option value="">All</option>
+            <option value="" selected>All</option>
             {% for yog in yog_list %}
                 <option value="{{yog}}">{{ yog }}s</option>
             {% endfor %}
@@ -107,21 +134,21 @@ function append(source, destination){
     </div>
     <div class="combo-div">
       <h4> Profession</h4>
-        <select id="professionList" name="profession" data-name="Profession" class="w-select" onchange="getList()">
-            <option value="">All</option>
+        <select id="professionList" name="profession" data-name="Profession" class="w-select" onchange="resetTag()">
+            <option value="" selected>All</option>
             {% for profession in profession_list %}
-                <option value="{{profession.Profession__name}}">{{ profession.Profession__name }}</option>
+                <option value="{{profession.name}}">{{ profession.name }}</option>
             {% endfor %}
         </select>
       <h5><em class="italic-text-2">Eg: Entrepreneur, Civil Servant, politician</em></h5>
     </div>
     <div class="combo-div">
       <h4>Tags</h4>
-      <select id="field-2" name="field-2" data-name="Field 2" class="w-select">
-          <option value="">All</option>
-          <option value="First">First Choice</option>
-          <option value="Second">Second Choice</option>
-          <option value="Third">Third Choice</option>
+      <select id="tagList" name="tag" data-name="tag" class="w-select" onchange="getList()">
+            <option value="" selected>All</option>
+            {% for tagObj in tags %}
+                <option value="{{tagObj.tag}}">{{ tagObj.tag }}</option>
+            {% endfor %}
       </select>
       <h5><em class="italic-text-2">Domain within a profession</em></h5>
     </div>
