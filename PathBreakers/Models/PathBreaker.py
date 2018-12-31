@@ -26,6 +26,7 @@ class PathBreaker(PersonalInfo):
                             ])
     """
     yog = models.IntegerField()
+    degree = models.CharField(max_length=20)
     professionTag = models.ManyToManyField(ProfessionTag)
     #Profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
 

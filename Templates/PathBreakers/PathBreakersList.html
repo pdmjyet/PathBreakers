@@ -2,9 +2,26 @@
 {% if path_breakers_list %}
 
     {% for pathbreaker in path_breakers_list %}
-        <div class="result-div">
-            <img id="w-node-540e4708a6fc-f885d616" src="{{ pathbreaker.profilePic }}" width="280"  sizes="280px" alt="" class="image result-image">
-        </div>
+        <div class="result-div" data-ix="image-hover">
+            <img src="{{ pathbreaker.profilePic }}" width="280" srcset = " {{pathbreaker.profilePic}} 600w" sizes="280px" alt="" class="image result-image" data-ix="image-hover">
+			<div class="overlay">
+				<div class="w-node-7128edf5acf2-f885d616 div-block-2">
+				  <h1 class="heading-6 name"> {{ pathbreaker.name }} </h1>
+				  <div class="div-block-5">
+					<h5 class="heading-7">{{ pathbreaker.degree }} &#x27;{{ pathbreaker.yog }}</h5>
+					<h5 class="heading-7"> | </h5>
+					<a href="{{ pathbreaker.link }}" class="link">know more</a>
+				  </div>
+				  <h5 class="heading-7 desc">{{ pathbreaker.blurb }}</h5>
+				  <div class="div-block-3"></div>
+				  <div id="tags" class="div-block-4">
+					  {% for tag in pathbreaker.professionTag.all %}
+					   <a  href="http://www.google.com" class="button w-button">{{ tag.tag }}</a>
+					  {% endfor %}
+				  </div>
+				</div>
+        	</div>
+		</div>
 
     {% endfor %}
 <script>
