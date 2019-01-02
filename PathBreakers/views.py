@@ -117,6 +117,8 @@ def getYogRangeList(yogList):
         elif yogObj['yog'] > maxVal:
             maxVal = yogObj['yog']
 
+    if minVal is -1:
+        return []
     minRange = (minVal // 10) * 10
     maxRange = (maxVal // 10) * 10 +10
     return  list(range(minRange, maxRange + 10, 10))
