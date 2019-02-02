@@ -312,6 +312,8 @@
 
 .heading-6.name {
   margin-bottom: 3px;
+  white-space: normal;
+  display: block;
 }
 
 .text-block {
@@ -451,7 +453,7 @@
   }
 }
 
-.w-node-c7ad3d438b37-f885d616 {
+.w-node-resulthover {
   -ms-grid-column: 1;
   grid-column-start: 1;
   -ms-grid-column-span: 1;
@@ -460,4 +462,7 @@
   grid-row-start: 1;
   -ms-grid-row-span: 1;
   grid-row-end: 2;
+  width: auto;
+  word-break: break-word;
+
 }
