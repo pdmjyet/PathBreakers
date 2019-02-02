@@ -3,7 +3,7 @@
 
     {% for pathbreaker in path_breakers_list %}
         <div class="result-div" data-ix="image-hover">
-            <img src="{{ pathbreaker.profilePic }}" width="280" srcset = " {{pathbreaker.profilePic}} 600w" sizes="280px" alt="" class="image result-image" data-ix="image-hover">
+            <img src="{{ pathbreaker.profilePic.url }}" width="280" srcset = " {{pathbreaker.profilePic.url}} 600w" sizes="280px" alt="" class="image result-image" data-ix="image-hover">
 			<div class="overlay">
 				<div class="w-node-resulthover div-block-2">
 				  <h1 class="heading-6 name"> {{ pathbreaker.name }} </h1>
