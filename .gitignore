@@ -1,7 +1,7 @@
 PathBreakers/migrations/__pycache__/
 PathBreakers/migrations/*initial.py
 PathBreakers/migrations/*.py
-
+PathBreakers/media/
 PathBreakers/Models/__pycache__/
 PathBreakers/__pycache__/
 
