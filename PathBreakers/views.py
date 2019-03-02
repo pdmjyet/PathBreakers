@@ -9,10 +9,11 @@ from django.db.models import F
 def home(request):
     return render(request, "PathBreakers/HomePage.html")
 
-def pathbreakers(request):
+def pathbreakers(request, college):
     pathbreakersList = []
     professionsList = []
     tagsList = []
+    print(college)
     yog = request.GET.get('yog', None)
     profession = request.GET.get('profession', None)
     tag = request.GET.get('tag', None)
