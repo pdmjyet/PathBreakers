@@ -21,8 +21,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.home),
-    path('pathbreakers', views.pathbreakers),
+    #path('', views.home),
+    path('nitwarangal', views.pathbreakers, {'college':'nitw'}),
     #path('pathbreakers/professions', views.getProfessions),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
