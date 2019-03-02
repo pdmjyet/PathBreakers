@@ -66,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'PathBreakers.context_processors.ga_tracking_id',
+                'PathBreakers.context_processors.use_ga',
             ],
         },
     },
@@ -134,3 +136,8 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+GA_TRACKING_ID = 'GA-TRACKING-ID'
+
+USE_GA = os.environ.get('DJANGO_USE_GA', False)
+USE_GA = {'True': True, 'False': False}.get(USE_GA, False)

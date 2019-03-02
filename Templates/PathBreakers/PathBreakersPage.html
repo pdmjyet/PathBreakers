@@ -23,6 +23,13 @@
 </head>
 
 <body class="body-2">
+
+  {% block ga %}
+    {% if use_ga %}
+        {% include "PathBreakers/ga.html" with ga_tracking_id=ga_tracking_id %}
+    {% endif %}
+  {% endblock ga %}
+
     <div class="section">
         <div class="container w-container">
           <h1 class="heading-3">NITW PATH BREAKERS<br>‍</h1>

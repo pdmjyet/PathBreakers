@@ -6,7 +6,7 @@ class PathBreakerAdmin(admin.ModelAdmin):
     list_display = ['name', 'yog', 'degree']
 
 class ProfessionTagAdmin(admin.ModelAdmin):
-    fields = ['profession']
+    fields = ['profession', 'tag']
     list_display = ['tag', 'get_professions']
 
     def get_professions(self, obj):
