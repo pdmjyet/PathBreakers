@@ -29,14 +29,24 @@
         {% include "PathBreakers/ga.html" with ga_tracking_id=ga_tracking_id %}
     {% endif %}
   {% endblock ga %}
-
-    <div class="section">
-        <div class="container w-container">
-          <h1 class="heading-3">NITW PATH BREAKERS<br>‍</h1>
-          <h3 class="heading-2">Listing of alumni from my alma mater - NIT Warangal - who are pursuing <span><em class="italic-text">atypical</em></span> professions successfully. This is NOT an exhaustive list, it only includes folks whom I met or would like to meet</h3>
-        </div>
-    </div>
     <div>
+      {%include "PathBreakers/NavBar.html" %}
+    </div>
+
+   <div class="section">
+    <div class="w-container">
+      <div class="div-block-7">
+        <div class="div-block-8"><img src="{% static 'PathBreakers/logo.png' %}" srcset="{% static 'PathBreakers/logo-p-500.png' %} 500w, {% static 'PathBreakers/logo-p-800.png' %} 800w, {% static 'PathBreakers/logo-p-1080.png' %} 1080w, {% static 'PathBreakers/logo-p-1600.png' %} 1600w, {% static 'PathBreakers/logo.png' %} 1899w" sizes="150px" alt="" class="image-2"></div>
+        <div class="hero-div">
+          <h3 class="hero-heading">NITW PATH BREAKERS</h3>
+          <h3 class="hero-sub-heading">Young alumni who are pursuing an atypical path passionately and successfully</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="section-4">
         {%include "PathBreakers/PathBreakersFilter.html" with profession_list=profession_list %}
     </div>
 

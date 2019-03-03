@@ -21,7 +21,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    #path('', views.home),
+    path('', views.home),
+    path('donate', views.donate),
+    path('contact', views.contact),
+    path('subscribe', views.subscribe),
     path('nitwarangal', views.pathbreakers, {'college':'nitw'}),
     #path('pathbreakers/professions', views.getProfessions),
     path('admin/', admin.site.urls),

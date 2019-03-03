@@ -139,5 +139,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 GA_TRACKING_ID = 'GA-TRACKING-ID'
 
-USE_GA = os.environ.get('DJANGO_USE_GA', False)
-USE_GA = {'True': True, 'False': False}.get(USE_GA, False)
+#USE_GA = os.environ.get('DJANGO_USE_GA', False)
+#USE_GA = {'True': True, 'False': False}.get(USE_GA, False)
+USE_GA = True
