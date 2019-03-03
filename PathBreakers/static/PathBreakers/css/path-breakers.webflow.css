@@ -237,6 +237,8 @@
   opacity: 1;
 }
 
+
+
 .body-2 {
   height: auto;
   color: #5c5a5a;
@@ -321,6 +323,12 @@
   grid-template-rows: auto auto;
   background-color: rgba(0, 0, 0, .5);
   opacity: 0;
+}
+
+.result-div:hover .overlay{
+    display:flex;
+    opacity:1;
+    transition: opacity 300ms ease 0;
 }
 
 .heading-6 {
