@@ -7,7 +7,17 @@ from django.core import serializers
 from django.db.models import F
 
 def home(request):
-    return render(request, "PathBreakers/HomePage.html")
+    count = PathBreaker.objects.all().count();
+    return render(request, "PathBreakers/index.html", {'count' : count})
+
+def donate(request):
+    return render(request, "PathBreakers/donate.html")
+
+def contact(request):
+    return render(request, "PathBreakers/contact.html")
+
+def subscribe(request):
+    return render(request, "PathBreakers/subscribe.html")
 
 def pathbreakers(request, college):
     pathbreakersList = []
@@ -123,3 +133,4 @@ def getYogRangeList(yogList):
     minRange = (minVal // 10) * 10
     maxRange = (maxVal // 10) * 10 +10
     return  list(range(minRange, maxRange + 10, 10))
+
