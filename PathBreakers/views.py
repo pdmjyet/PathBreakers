@@ -31,22 +31,22 @@ def pathbreakers(request, college):
 
     if yog is not None and profession is not None and tag is not None:
         yog = int(yog)
-        pathbreakersList = PathBreaker.objects.filter(yog__range=(yog, yog+10), professionTag__profession__name = profession, professionTag__tag = tag)
+        pathbreakersList = PathBreaker.objects.filter(yog__range=(yog, yog+10), professionTag__profession__name = profession, professionTag__tag__tag = tag)
     elif yog is not None and profession is not None :
         yog = int(yog)
         pathbreakersList = PathBreaker.objects.filter(yog__range=(yog, yog+10), professionTag__profession__name = profession)
     elif yog is not None and tag is not None:
         yog = int(yog)
-        pathbreakersList = PathBreaker.objects.filter(yog__range=(yog, yog+10), professionTag__tag = tag)
+        pathbreakersList = PathBreaker.objects.filter(yog__range=(yog, yog+10), professionTag__tag__tag = tag)
     elif profession is not None and tag is not None:
-        pathbreakersList = PathBreaker.objects.filter(professionTag__profession__name = profession, professionTag__tag = tag)
+        pathbreakersList = PathBreaker.objects.filter(professionTag__profession__name = profession, professionTag__tag__tag = tag)
     elif yog is not None:
         yog = int(yog)
         pathbreakersList = PathBreaker.objects.filter(yog__range=(yog, yog+10))
     elif profession is not None:
         pathbreakersList = PathBreaker.objects.filter(professionTag__profession__name = profession)
     elif tag is not None:
-        pathbreakersList = PathBreaker.objects.filter(professionTag__tag = tag)
+        pathbreakersList = PathBreaker.objects.filter(professionTag__tag__tag = tag)
     else:
         pathbreakersList = PathBreaker.objects.all()
 
