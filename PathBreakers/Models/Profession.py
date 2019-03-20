@@ -8,9 +8,22 @@ class Profession(models.Model):
     def __str__(self):
         return self.name
 
-class ProfessionTag(models.Model):
+class Tag(models.Model):
+    # TODO
+    # Tolower case
     tag = models.CharField(max_length=30, unique=True, primary_key=True)
-    profession = models.ManyToManyField(Profession)
 
     def __str__(self):
         return self.tag
+
+
+class ProfessionTag(models.Model):
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, null=False)
+    #tag = models.CharField(max_length=30, unique=True, primary_key=True)
+    profession = models.ForeignKey(Profession, on_delete=models.CASCADE, null=False)
+
+    class Meta:
+        unique_together = ('tag', 'profession',)
+
+    def __str__(self):
+        return self.tag.tag + self.profession.name
