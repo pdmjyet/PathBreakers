@@ -3,7 +3,7 @@ from .. import settings
 import os
 
 class PersonalInfo(models.Model):
-    blurb = models.CharField(max_length=140)
+    blurb = models.CharField(max_length=140, blank=True, null=True)
     name  = models.CharField(max_length=30)
     link  = models.URLField()
     profilePic = models.ImageField(upload_to = 'PathBreakers', default = 'media/PathBreakers/Default.png')
