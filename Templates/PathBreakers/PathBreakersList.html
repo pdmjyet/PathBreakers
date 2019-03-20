@@ -12,7 +12,11 @@
 					<h5 class="heading-7"> | </h5>
 					<a href="{{ pathbreaker.link }}" class="link">know more</a>
 				  </div>
-				  <h5 class="heading-7 desc">{{ pathbreaker.blurb }}</h5>
+				  {% if pathbreaker.blurb %}
+				  	<h5 class="heading-7 desc">{{ pathbreaker.blurb }}</h5>
+				   {% else %}
+					<h5 class="heading-7 desc"></h5>
+				  {% endif %}
 				  <div class="div-block-3"></div>
 				  <div id="tags" class="div-block-4">
 					  {% for tag in pathbreaker.professionTag.all %}
